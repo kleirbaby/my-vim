@@ -10,6 +10,7 @@ set ruler
 set showmatch
 set smartcase
 set mouse=a
+" set signcolumn=yes
 
 " install vim-plug if need
 
@@ -64,6 +65,22 @@ if a:info.status == 'installed' || a:info.force
 endif
 endfunction
 
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_server_log_level = 'info'
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_complete_in_strings=1
+let g:ycm_key_invoke_completion = '<c-z>'
+set completeopt=menu,menuone
+
+noremap <c-z> <NOP>
+
+let g:ycm_semantic_triggers =  {
+           \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+           \ 'cs,lua,javascript': ['re!\w{2}'],
+           \ }
+
 Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') }
 """"""""""""""""""""""""""END""""""""""""""""""""""""""""""""""""
 
@@ -72,4 +89,49 @@ Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') }
 Plug 'preservim/nerdtree'
 map <F2> :NERDTreeToggle<CR>
 """"""""""""""""""""""""""END""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""BEGIN"""""""""""""""""""""""""""""""""""
+" 一个异步执行shell命令的工具
+Plug 'skywind3000/asyncrun.vim'
+""""""""""""""""""""""""""END""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""BEGIN"""""""""""""""""""""""""""""""""""
+" 代码检查工具
+Plug 'dense-analysis/ale'
+
+let g:ale_linters_explicit = 1
+let g:ale_completion_delay = 500
+let g:ale_echo_delay = 20
+let g:ale_lint_delay = 500
+let g:ale_echo_msg_format = '[%linter%] %code: %%s'
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:airline#extensions#ale#enabled = 1
+
+let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
+let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+let g:ale_c_cppcheck_options = ''
+let g:ale_cpp_cppcheck_options = ''
+""""""""""""""""""""""""""END""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""BEGIN"""""""""""""""""""""""""""""""""""
+" 修改比较(git,svn)
+Plug 'mhinz/vim-signify'
+""""""""""""""""""""""""""END""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""BEGIN"""""""""""""""""""""""""""""""""""
+" 增加的CPP语法高亮
+Plug 'octol/vim-cpp-enhanced-highlight'
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_posix_standard = 1
+
+""""""""""""""""""""""""""END""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""BEGIN"""""""""""""""""""""""""""""""""""
+Plug 'Yggdroot/LeaderF'
+map <F3> :LeaderfFunction!<CR> 
+""""""""""""""""""""""""""END""""""""""""""""""""""""""""""""""""
+
 call plug#end()
