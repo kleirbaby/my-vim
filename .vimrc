@@ -1,6 +1,6 @@
 " basic setting
 
-" 加载basic配置
+!mkdir ~/.vim/test
 source ~/.vim/basic/basic.vim
 
 " install vim-plug if need
