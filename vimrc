@@ -1,9 +1,11 @@
 " basic setting
 
 " 加载basic配置
-source ~/.vim/basic/basic.vim
+if !empty(glob('~/.vim/basic/basic.vim'))
+    source ~/.vim/basic/basic.vim
+endif
 
-" install vim-plug if need
+" 如果没有vim-plug则安装
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
